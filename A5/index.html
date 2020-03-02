@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<style>
+  img{
+display: block;
+height: 300px;    
+  }
+  .active{
+    background: lightblue;
+  }
+  </style>
+
+  <body>
+    <img>
+
+    <button onclick='goPrev()'> Prev </button>
+
+    <div id='numWrapper'>
+      <button onclick='goToSlide(0)'> 1 </button>
+      <button onclick='goToSlide(1)'> 2 </button>
+      <button onclick='goToSlide(2)'> 3 </button>
+  </div>
+  
+    <button onclick='goNext()'> Next </button>
+    </body>
+  
+    <script>
+      
+      var imgs = [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Acer_diabolicum_9_%28medium_crop%29.jpg/320px-Acer_diabolicum_9_%28medium_crop%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Delos_Museum_Mosaik_Dionysos_09.jpg/240px-Delos_Museum_Mosaik_Dionysos_09.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/CSIRO_ScienceImage_3881_Five_Antennas_at_Narrabri_-_restoration1.jpg/800px-CSIRO_ScienceImage_3881_Five_Antennas_at_Narrabri_-_restoration1.jpg"
+      ];
+      $("img").attr("src", imgs[0])
+      /*
+      var imgs = location.hash.replace("#","").split(",")
+      var markup = "";
+      for(var i = 0; i < imgs.length; i++){
+        markup = markup + "<button onclick='goToSlide(" + i + ")'>" + (i+1) + "</button>"
+      }
+      document.getElementById("numWrapper").innerHTML = markup;
+      */
+       
+
+        var goToSlide = function(n)
+        {
+          var currSLide = 0;
+          $("img").attr("src", imgs[n])
+          currSLide = n;
+          $("#numWrapper button").removeClass("active")
+          $($("#numWrapper button")[currSlide]).addClass("active")
+        
+        }
+        goToSlide(0);
+
+      var goPrev = function()
+      {
+        debugger;
+
+        var currentSLide = 0;
+        currentSLide = currentSLide - 1;
+        console.log(currentSLide);
+        console.log(imgs.length);
+
+        if(currSlide < 0)
+        {
+          currSlide = imgs.length - 1;
+        }
+        goToSlide(currSlide);
+      }
+
+      var goNext = function()
+      {
+        debugger;
+
+        var currentSLide = 0;
+        currSlide = currSlide + 1;
+        
+        console.log(currentSLide);
+        console.log(imgs.length);
+        if(currSlide > imgs.length)
+        {
+          currSlide = 0;
+        }
+        goToSlide(currSlide);
+      }
+      </script>
+</html>
